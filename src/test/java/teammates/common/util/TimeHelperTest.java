@@ -130,4 +130,89 @@ public class TimeHelperTest extends BaseTestCase {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void TestgetMidnightAdjustedInstantBasedOnZone1() {
+        Instant instant = Instant.parse("2015-03-01T23:59:00Z");
+        String timeZone = "UTC";
+        boolean isForward = true;
+        Instant expectedOutput = Instant.parse("2015-03-02T00:00:00Z");
+
+        Instant result = TimeHelper.getMidnightAdjustedInstantBasedOnZone(instant, timeZone,isForward);
+
+        assertEquals(expectedOutput, result);
+    }
+
+    @Test
+    public void TestgetMidnightAdjustedInstantBasedOnZone2() {
+        Instant instant = Instant.parse("1970-12-31T00:00:00Z");
+        String timeZone = "UTC";
+        boolean isForward = true;
+        Instant expectedOutput = instant;
+
+        Instant result = TimeHelper.getMidnightAdjustedInstantBasedOnZone(instant, timeZone,isForward);
+
+        assertEquals(expectedOutput, result);
+    }
+
+
+    @Test
+    public void TestgetMidnightAdjustedInstantBasedOnZone3() {
+        Instant instant = Instant.parse("1970-06-22T00:00:00Z");
+        String timeZone = "UTC";
+        boolean isForward = true;
+        Instant expectedOutput = instant;
+
+        Instant result = TimeHelper.getMidnightAdjustedInstantBasedOnZone(instant, timeZone,isForward);
+
+        assertEquals(expectedOutput, result);
+    }
+
+    @Test
+    public void TestgetMidnightAdjustedInstantBasedOnZone4() {
+        Instant instant = Instant.parse("1970-01-01T00:00:00Z");
+        String timeZone = "UTC";
+        boolean isForward = true;
+        Instant expectedOutput = instant;
+
+        Instant result = TimeHelper.getMidnightAdjustedInstantBasedOnZone(instant, timeZone,isForward);
+
+        assertEquals(expectedOutput, result);
+    }
+
+    @Test
+    public void TestgetMidnightAdjustedInstantBasedOnZone5() {
+        Instant instant = Instant.parse("1970-02-14T00:00:00Z");
+        String timeZone = "UTC";
+        boolean isForward = true;
+        Instant expectedOutput = instant;
+
+        Instant result = TimeHelper.getMidnightAdjustedInstantBasedOnZone(instant, timeZone,isForward);
+
+        assertEquals(expectedOutput, result);
+    }
+
+    @Test
+    public void TestgetMidnightAdjustedInstantBasedOnZone6() {
+        Instant instant = Instant.parse("2015-03-01T00:00:00Z");
+        String timeZone = "UTC";
+        boolean isForward = false;
+        Instant expectedOutput = Instant.parse("2015-02-28T23:59:00Z");
+
+        Instant result = TimeHelper.getMidnightAdjustedInstantBasedOnZone(instant, timeZone,isForward);
+
+        assertEquals(expectedOutput, result);
+    }
+
+    @Test
+    public void TestgetMidnightAdjustedInstantBasedOnZone7() {
+        Instant instant = Instant.parse("2015-03-01T23:50:00Z");
+        String timeZone = "UTC";
+        boolean isForward = false;
+        Instant expectedOutput = instant;
+
+        Instant result = TimeHelper.getMidnightAdjustedInstantBasedOnZone(instant, timeZone,isForward);
+
+        assertEquals(expectedOutput, result);
+    }
+
 }
